@@ -1,0 +1,38 @@
+#\h:\w \u\$
+export PS1="\n\[\e[35;1m\][\A]\[\e[36;1m\]\u\[\e[0m\]@\[\e[33;1m\]\h\[\e[0m\]:\[\e[32;1m\]\w\[\e[0m\][\$?]\n\$ " 
+
+# Color
+#alias ls='ls -G'
+export CLICOLOR=1
+#export LSCOLORS=exfxcxdxbxegedabagacad
+alias grep='grep --color=always'
+
+export PATH=/usr/local/git/bin:$PATH
+
+complete -cf sudo
+# Add alias function
+alias ll='ls -al'
+alias ssh1='ssh root@211.64.140.144'
+alias ssh3='ssh root@211.64.131.137'
+alias ssh2='ssh root@211.64.131.140'
+#Add blast PATH
+export PATH=/Users/wubin/Workspace/Program/BLAST/bin:$PATH
+#Add wgsim PATH
+export PATH=/Volumes/MACDATA/wb/Workspace/Program/wgsim-master:$PATH
+
+# MacPorts Installer addition on 2014-07-09_at_14:43:59: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+# Add mysql PATH in 20140730
+MYSQLDIR=/usr/local/mysql/bin
+export PATH=${MYSQLDIR}:$PATH
+#Finished
+
+#Add ~/bin to PATH#
+export PATH=/Volumes/MACDATA/wubin/bin:$PATH
+#Finished
+
+#Add git-completion.bash 
+source ~/.git-completion.bash
+#Finished
