@@ -1,0 +1,71 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: WuBin
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start btsync
+# Description: starts and stops btsync Client
+### END INIT INFO
+NAME="btsync"
+CONF="/opt/btsync/btsync.cfg"
+PROC="/opt/btsync/btsync"
+#PIDFILE="/opt/btsync/btsync.pid"
+
+btsync_start(){
+	PID1=$(pidof btsync)
+	if [ -z "${PID1}" ]
+	   then
+		echo -n "Starting BitTorrent Sync:"
+#		${PROC} --config ${$CONF}
+		${PROC}
+	else
+		echo "BitTorrent Sync is already running at pid:${PID1}"
+	fi
+	return $?
+}
+
+btsync_stop(){
+	echo -n "Stopping BitTorrent Sync:"
+	PID1=$(pidof btsync)
+	echo $
+	if [ -n "${PID1}" ]
+	   then
+		kill -9 ${PID1}
+		echo "OK"
+	else
+		echo "Failed"
+	fi
+	return $?	
+}
+btsync_status(){
+	PID1=$(pidof btsync)
+	#PID2=$(cat ${PIDFILE})
+	echo -n "Checking BitTorrent Sync:"
+	if [ -n ${PID1} ]
+	   then
+		echo "OK"
+	else
+		echo "Failed"
+	fi
+	return $?
+}
+
+case "$1" in
+	start)
+		btsync_start
+		;;
+	stop)
+		btsync_stop
+		;;
+	restart)
+		btsync_stop
+		sleep 1
+		btsync_start
+		;;
+	status)
+		btsync_status
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart|status}"
+		exit 2
+esac
